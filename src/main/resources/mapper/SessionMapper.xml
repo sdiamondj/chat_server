@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.ncu.chat_server.mapper.SessionMapper" >
+  <resultMap id="BaseResultMap" type="cn.edu.ncu.chat_server.entity.Session" >
+    <id column="session_id" property="sessionId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="session_content" property="sessionContent" jdbcType="VARCHAR" />
+    <result column="time" property="time" jdbcType="TIMESTAMP" />
+    <result column="talker_id" property="talkerId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    session_id, user_id, session_content, time, talker_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from chat_session
+    where session_id = #{sessionId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from chat_session
+    where session_id = #{sessionId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.edu.ncu.chat_server.entity.Session" >
+    insert into chat_session (session_id, user_id, session_content, 
+      time, talker_id)
+    values (#{sessionId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{sessionContent,jdbcType=VARCHAR}, 
+      #{time,jdbcType=TIMESTAMP}, #{talkerId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.edu.ncu.chat_server.entity.Session" >
+    insert into chat_session
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sessionId != null" >
+        session_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="sessionContent != null" >
+        session_content,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="talkerId != null" >
+        talker_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sessionId != null" >
+        #{sessionId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="sessionContent != null" >
+        #{sessionContent,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="talkerId != null" >
+        #{talkerId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.ncu.chat_server.entity.Session" >
+    update chat_session
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="sessionContent != null" >
+        session_content = #{sessionContent,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="talkerId != null" >
+        talker_id = #{talkerId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where session_id = #{sessionId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.edu.ncu.chat_server.entity.Session" >
+    update chat_session
+    set user_id = #{userId,jdbcType=INTEGER},
+      session_content = #{sessionContent,jdbcType=VARCHAR},
+      time = #{time,jdbcType=TIMESTAMP},
+      talker_id = #{talkerId,jdbcType=INTEGER}
+    where session_id = #{sessionId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByUserId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from chat_session
+    where user_id = #{userId,jdbcType=INTEGER}
+    order by time desc
+  </select>
+</mapper>
