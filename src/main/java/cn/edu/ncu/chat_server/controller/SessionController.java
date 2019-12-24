@@ -1,9 +1,7 @@
 package cn.edu.ncu.chat_server.controller;
 
-import cn.edu.ncu.chat_server.entity.Session;
 import cn.edu.ncu.chat_server.service.SessionService;
 import cn.edu.ncu.chat_server.vo.SessionVO;
-import cn.edu.ncu.chat_server.vo.SessionVOList;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,7 +22,6 @@ public class SessionController {
     @RequestMapping(value = "/select")
     public String selectByAccount(@RequestParam("account")String account){
         List<SessionVO> list = sessionService.selectByAccount(account);
-        SessionVOList res = new SessionVOList(list);
-        return JSONObject.toJSONString(res);
+        return JSONObject.toJSONString(list);
     }
 }
