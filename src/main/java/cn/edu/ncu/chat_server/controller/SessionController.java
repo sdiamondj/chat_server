@@ -57,4 +57,11 @@ public class SessionController {
         MessageOneVO messageOneVO = messageService.getNoReadMessage(him_id,me_id);
         return JSON.toJSONString(messageOneVO);
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/add")
+    public String addFriend(@RequestParam("me_account")String me_account,
+                            @RequestParam("him_account")String him_account){
+        return sessionService.addFriends(me_account,him_account);
+    }
 }

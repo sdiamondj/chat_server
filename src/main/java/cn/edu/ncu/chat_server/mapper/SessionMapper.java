@@ -22,4 +22,6 @@ public interface SessionMapper {
     int updateByPrimaryKey(Session record);
 
     List<Session> selectByUserId(Integer userId);
+
+    Session selectByBothId(Integer userId,Integer talkerId);
 }
