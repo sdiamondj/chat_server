@@ -11,9 +11,17 @@ public class User {
 
     private String name;
 
-    private Integer picture;
+    private String picture;
 
-    private String description;
+    public User(Integer id, String account, String password, String gender, String name, String picture, String description) {
+        this.id = id;
+        this.account = account;
+        this.password = password;
+        this.gender = gender;
+        this.name = name;
+        this.picture = picture;
+        this.description = description;
+    }
 
     public Integer getId() {
         return id;
@@ -28,7 +36,7 @@ public class User {
     }
 
     public void setAccount(String account) {
-        this.account = account == null ? null : account.trim();
+        this.account = account;
     }
 
     public String getPassword() {
@@ -36,7 +44,7 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password == null ? null : password.trim();
+        this.password = password;
     }
 
     public String getGender() {
@@ -44,7 +52,7 @@ public class User {
     }
 
     public void setGender(String gender) {
-        this.gender = gender == null ? null : gender.trim();
+        this.gender = gender;
     }
 
     public String getName() {
@@ -52,14 +60,14 @@ public class User {
     }
 
     public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+        this.name = name;
     }
 
-    public Integer getPicture() {
+    public String getPicture() {
         return picture;
     }
 
-    public void setPicture(Integer picture) {
+    public void setPicture(String picture) {
         this.picture = picture;
     }
 
@@ -68,6 +76,10 @@ public class User {
     }
 
     public void setDescription(String description) {
-        this.description = description == null ? null : description.trim();
+        this.description = description;
     }
+
+    private String description;
+
+
 }

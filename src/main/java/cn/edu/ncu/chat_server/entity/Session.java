@@ -1,7 +1,5 @@
 package cn.edu.ncu.chat_server.entity;
 
-import java.security.Timestamp;
-import java.util.Date;
 
 public class Session {
     private Integer sessionId;
